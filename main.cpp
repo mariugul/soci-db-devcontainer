@@ -20,7 +20,7 @@ int main() {
     
     try
     {
-        session sql(postgresql, "dbname=mydb");
+        session sql(postgresql, "dbname=postgres user=postgres");
         
         int count;
         sql << "", into(count);
@@ -50,13 +50,6 @@ int main() {
     {
         cerr << BOLDRED << e.what() << RESET << '\n';
     }
-    
-    // cout 
-    //     << YELLOW 
-    //     << "This example runs SOCI as a standalone container. " 
-    //     << "Therefore, you would need to communicate with the database through a network \n" 
-    //     << "by spinning up a PostreSQL server on another container, using Docker Compose.\n\n"
-    //     << RESET;
 
     return 0;
 }

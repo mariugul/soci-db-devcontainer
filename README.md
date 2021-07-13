@@ -32,3 +32,24 @@ If you run into issues with CMake cache errors, try deleting the build folder an
 
 ## Other Databases
 You can use this container to develop for other databases than PostgreSQL as well, like MySQL, SQLite3, Firebird, DB2, Oracle or different ones using ODBC API.  To do this, see the [Installation](http://soci.sourceforge.net/doc/release/4.0/installation/) guide on [SOCI (4.2.0) documentation](http://soci.sourceforge.net/doc/release/4.0/). Then change the parameters in the [Dockerfile](https://github.com/mariugul/soci-devcontainer/blob/main/.devcontainer/Dockerfile) accordingly. You might also need to install new libraries for the specific backend of your choice as you can see by viewing the [backend page](http://soci.sourceforge.net/doc/release/4.0/backends/) for your specific database choice.
+
+## Helpful Commands
+
+### Bash 
+
+| Description                  | Command |
+| ---------------------------- | ------- |
+| Restart postgres             | `sudo service postgres restart` |
+| Enter psql from another user | `sudo -u postgres psql`         |
+| Switch user                  | `su -l $USER`                   |
+|
+
+### PostgreSQL
+| Description                  | Command |
+| ---------------------------- | ------- |
+|
+
+### Docker
+| Description                  | Command |
+| ---------------------------- | ------- |
+|

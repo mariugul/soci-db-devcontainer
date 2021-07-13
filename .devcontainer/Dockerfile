@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     # Needed for PostgreSQL backend in SOCI
-    libpq-dev postgresql-server-dev-all
+    libpq-dev postgresql-server-dev-all postgresql
 
 # Build and install SOCI
 RUN mkdir /soci-build && cd /soci-build && git clone git://github.com/SOCI/soci.git && \
