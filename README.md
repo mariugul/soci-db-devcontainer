@@ -1,6 +1,6 @@
 # SOCI-enabled C++ project with PostgreSQL Database Included
 
-This is a docker devcontainer that installs SOCI for use with C++ and PostgreSQL. The container contains a PostgreSQL database as well and is therefore a fully integrated solution for development of PostgreSQL with SOCI. The purpose of this devcontainer is to enable simple testing of the database and the development with SOCI, without having to set up a [Docker Compose](https://docs.docker.com/compose/) network.
+This is a docker devcontainer that installs SOCI for use with C++ and PostgreSQL. The container contains a PostgreSQL database as well and is therefore a fully integrated solution for development of PostgreSQL with SOCI. The purpose of this devcontainer is to enable simple testing of the database and the development with SOCI, without having to set up a [Docker Compose](https://docs.docker.com/compose/) network. The image size when built is ~1.5GB.
 
 ## Setup
 
