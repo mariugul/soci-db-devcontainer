@@ -4,7 +4,11 @@ This is a docker devcontainer that installs SOCI for use with C++ and PostgreSQL
 
 ## Setup
 
-Before connecting to the database you need to edit the file `pg_hba.conf` and change the user `postgres` from connection method <i>peer</i> to <i>trust</i>. There are probably other ways of doing this, but I'm not familiar with them yet. The file location can be found by entering this command into <b>psql</b> `SHOW hba_file;`. To enter <b>psql</b>, type `sudo -u postgres psql` into bash. 
+Before connecting to the database you need to edit the file `pg_hba.conf` and change the user `postgres` from connection method <i>peer</i> to <i>trust</i>. There are probably other ways of doing this, but I'm not familiar with them yet. The file location can be found by entering this command into <b>psql</b> `SHOW hba_file;`. To enter <b>psql</b>, type `sudo -u postgres psql` into bash. Then a restart of postgres is necessary.
+
+1. `sudo nano /etc/postgresql/12/main/pg_hba.conf`
+2. `/etc/init.d/postgresql restart`
+
 ## How to compile and run
 
 1. Create and go into the build folder.
