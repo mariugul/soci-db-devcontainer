@@ -2,6 +2,9 @@
 
 This is a docker devcontainer that installs SOCI for use with C++ and PostgreSQL. The container contains a PostgreSQL database as well and is therefore a fully integrated solution for development of PostgreSQL with SOCI. The purpose of this devcontainer is to enable simple testing of the database and the development with SOCI, without having to set up a [Docker Compose](https://docs.docker.com/compose/) network.
 
+## Setup
+
+Before connecting to the database you need to edit the file `pg_hba.conf` and change the user `postgres` from connection method <i>peer</i> to <i>trust</i>. There are probably other ways of doing this, but I'm not familiar with them yet. The file location can be found by entering this command into <b>psql</b> `SHOW hba_file;`. To enter <b>psql</b>, type `sudo -u postgres psql` into bash. 
 ## How to compile and run
 
 1. Create and go into the build folder.
@@ -37,19 +40,33 @@ You can use this container to develop for other databases than PostgreSQL as wel
 
 ### Bash 
 
-| Description                  | Command |
-| ---------------------------- | ------- |
-| Restart postgres             | `sudo service postgres restart` |
-| Enter psql from another user | `sudo -u postgres psql`         |
-| Switch user                  | `su -l $USER`                   |
+| Description                   | Command |
+| ----------------------------- | ------- |
+| Restart postgres              | `sudo service postgres restart`  |
+|                               | `/etc/init.d/postgresql restart` |
+| Access psql from another user | `sudo -u postgres psql`          |
+| Switch user                   | `su -l $USER`                    |
+| Edit pg_hba.conf              | `sudo nano /etc/postgresql/12/main/pg_hba.conf` |
 |
 
-### PostgreSQL
+### PostgreSQL | PSQL
+
 | Description                  | Command |
 | ---------------------------- | ------- |
+| Clear terminal               | `\! clear`     |
+| List databases               | `\l`           |
+| Connect to database          | `\c $Database` |
+| List roles                   | `\du`          |
+| Create user                  | `CREATE ROLE $name` |
+| Alter user                   | `ALTER USER $name`  |
+| Show location of pg_hba.conf | `SHOW hba_file;`    |
 |
 
 ### Docker
+
 | Description                  | Command |
 | ---------------------------- | ------- |
-|
+| Show running processes | `docker ps`           |
+| Show available images  | `docker images`       |
+| Remove image           | `docker image rm $ID` |
+| 
