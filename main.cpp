@@ -6,46 +6,42 @@
 using namespace soci;
 using namespace std;
 
-bool get_name(string &name) {
-    cout << "Enter name: ";
-    cin >> name;
-    if(name != "")
-        return true;
-    else 
-        return false;
-}
-
 int main() {
-    cout << "Hello SOCI Dev!\n\n";
+
+    cout << "---------------------------\n" << "Hello SOCI developer!\n\n";
     
     try
     {
-        session sql(postgresql, "dbname=postgres user=postgres");
+        const string databaseName = "postgres";
+        const string userName = "postgres";
+        const string connectionString = "dbname=" + databaseName + " user=" + userName;
+
+        session sql(postgresql, connectionString);
+
+        // Check for successful connection
+        if (!sql.is_connected()) return 0; // This might already be checked when creating the sql object
+        cout << "Connected to database " << GREEN << databaseName << "\n" << RESET;
         
-        int count;
-        sql << "", into(count);
+        // Does table exist?
+        bool tableExists = false;
+        string tableName;
+        sql.get_table_names(), into(tableName);
+        tableName == "" ? tableExists = false : tableExists = true; // This test is only valid because I test this one table and only that
 
-        cout << "We have " << count << " entries in the phonebook.\n";
-
-        string name;
-
-        while (get_name(name))
-        {
-            string phone;
-            indicator ind;
-            sql << "select phone from phonebook where name = :name",
-                into(phone, ind), use(name);
-
-            if (ind == i_ok)
-            {
-                cout << "The phone number is " << phone << '\n';
-            }
-            else
-            {
-                cout << "There is no phone for " << name << '\n';
-            }
+        // Create table "colors"
+        if (!tableExists){
+            sql.create_table("colors")
+                .column("id", dt_integer)
+                .column("Red", dt_string)
+                .column("Green", dt_string)
+                .column("Blue", dt_string)
+                .primary_key("colors_pk", "id");
+            cout << "Successfully created table 'colors'\n";
         }
-    }
+        else {
+            cout << "Table 'colors' exists already.\n";
+        }
+    }  
     catch(const exception& e)
     {
         cerr << BOLDRED << e.what() << RESET << '\n';
