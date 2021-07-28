@@ -73,4 +73,4 @@ You can use this container to develop for other databases than PostgreSQL as wel
 | Show running processes | `docker ps`           |
 | Show available images  | `docker images`       |
 | Remove image           | `docker image rm $ID` |
-| 
+| Connect PSQL to container | `docker exec -ti NAME_OF_CONTAINER psql -U YOUR_POSTGRES_USERNAME` |
